@@ -1,0 +1,5 @@
+DataElement_ID,Num_DataElement_ID,Type,Sequence,Value,Short_Description,Container_Name,DataElement_Name
+34FC633E-0047-FD6A-6DD0-512D70BB5E46,125,Attribute,1,basic,,"Users","user_type",
+34FC633E-0047-FD6A-6DD0-512D70BB5E46,125,Attribute,2,premium,,"Users","user_type",
+68638DD5-B0E2-DD54-F777-C78CF70077B8,195,Column,1,basic,,"Users","user_type",
+68638DD5-B0E2-DD54-F777-C78CF70077B8,195,Column,2,premium,,"Users","user_type",
