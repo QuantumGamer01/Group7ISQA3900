@@ -1,8 +1,0 @@
-Entity_Name,ObjectID,NumOID,ImportID,ModelID,Num_ModelID,Structured_Type_ID,Num_Structured_Type_ID,Structured_Type_Name,Number_Data_Elements,Classification_Type,Allow_Type_Substitution,Min_Volume,Expected_Volume,Max_Volume,Growth_Rate_Percents,Growth_Rate_Interval,Normal_Form,Temporary_Object_Scope,Adequately_Normalized,Substitution_Parent,Num_Substitution_Parent,Synonyms,Synonym_To_Display,Preferred_Abbreviation,SuperTypeEntity_ID,Num_SuperTypeEntity_ID,Engineering_Strategy,Owner,Entity_Source
-"BasicUserTransactions",BD99A375-5A50-B7C5-125F-444D0295849E,85,,D08C6721-FEFA-DAB4-06ED-71E84DFD35C6,84,,,,6,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
-"Budgets (for premium users)",C0E63DD3-0742-CE38-F039-0515F156332E,86,,D08C6721-FEFA-DAB4-06ED-71E84DFD35C6,84,,,,5,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
-"ExpenseCategories (For Premium Users)",1F5F29B8-772F-27B4-9506-52717DA4FBA9,87,,D08C6721-FEFA-DAB4-06ED-71E84DFD35C6,84,,,,5,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
-"Expenses (For Premium Users)",4CBCCAFA-A942-87FE-9AB8-24E6F43C6BF6,88,,D08C6721-FEFA-DAB4-06ED-71E84DFD35C6,84,,,,7,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
-"IncomeCategories (For Premium Users)",81F83852-7B93-698E-8486-3E5C90F96089,89,,D08C6721-FEFA-DAB4-06ED-71E84DFD35C6,84,,,,5,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
-"Incomes (For Premium Users)",6E2D467E-A640-E9BC-B730-366F96498C13,90,,D08C6721-FEFA-DAB4-06ED-71E84DFD35C6,84,,,,7,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
-"Users",889C546B-BEB0-137B-BB6E-C22D6934D257,91,,D08C6721-FEFA-DAB4-06ED-71E84DFD35C6,84,,,,6,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
