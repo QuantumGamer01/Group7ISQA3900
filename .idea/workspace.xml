@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6beea074-5b66-4b10-bfa2-49c7885277f1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Group7ISQA3900.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Group7ISQA3900.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7ISQA3900Project/Group7ISQA3900Project/Group7ISQA3900Project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7ISQA3900Project/Group7ISQA3900Project/Group7ISQA3900Project/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7ISQA3900Project/newApp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7ISQA3900Project/Group7ISQA3900Project/newApp/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7ISQA3900Project/newApp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7ISQA3900Project/Group7ISQA3900Project/newApp/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7ISQA3900Project/newApp/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7ISQA3900Project/Group7ISQA3900Project/newApp/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7ISQA3900Project/newApp/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7ISQA3900Project/Group7ISQA3900Project/newApp/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7ISQA3900Project/newApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7ISQA3900Project/Group7ISQA3900Project/newApp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7ISQA3900Project/newApp/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7ISQA3900Project/Group7ISQA3900Project/newApp/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7ISQA3900Project/newApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7ISQA3900Project/Group7ISQA3900Project/newApp/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="6beea074-5b66-4b10-bfa2-49c7885277f1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +96,7 @@
       <updated>1743639481282</updated>
       <workItem from="1743639482329" duration="155000" />
       <workItem from="1743639694210" duration="42000" />
-      <workItem from="1743639740781" duration="318000" />
+      <workItem from="1743639740781" duration="816000" />
     </task>
     <servers />
   </component>
