@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\ninja\OneDrive - University of Nebraska at Omaha\Desktop\djangoPt2\Group7ISQA3900\venv"
+VIRTUAL_ENV="C:\Users\Gmanl\PycharmProjects\Group7ISQA3900\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
