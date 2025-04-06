@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6beea074-5b66-4b10-bfa2-49c7885277f1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Group7Project/Group7Budgeting/templates/advanced_budget.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Group7Project/Group7Budgeting/templates/simple_budget.html" afterDir="false" />
+    <list default="true" id="6beea074-5b66-4b10-bfa2-49c7885277f1" name="Changes" comment="small text changes on tax calc html">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7Project/Group7Budgeting/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Budgeting/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Group7Project/Group7Project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Project/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Group7Project/Group7Project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Project/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,12 +33,12 @@
     &quot;assignee&quot;: &quot;QuantumGamer01&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/QuantumGamer01/Group7ISQA3900.git",
-    "accountId": "a769b832-4557-430e-babf-21ca75d5d30b"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/QuantumGamer01/Group7ISQA3900.git&quot;,
+    &quot;accountId&quot;: &quot;95eefb6c-13a8-48ab-b0dc-212fefe50049&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -72,7 +70,6 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\luke\Documents\GitHub\Group7ISQA3900\Group7Project\Group7Budgeting\templates" />
       <recent name="C:\Users\Gmanl\PycharmProjects\Group7ISQA3900\Group7Project\Group7Budgeting" />
       <recent name="C:\Users\Gmanl\PycharmProjects\Group7ISQA3900\Group7Project\Group7Budgeting\catalog\templates\main" />
       <recent name="C:\Users\ninja\OneDrive - University of Nebraska at Omaha\Desktop\djangoPt2\Group7ISQA3900\Group7ISQA3900Project\Group7ISQA3900Project" />
@@ -88,6 +85,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13 (Group7ISQA3900)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -107,8 +105,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-PY-243.23654.177" />
-        <option value="bundled-python-sdk-91d3a02ef49d-43b77aa2d136-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.23654.177" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PY-243.25659.43" />
+        <option value="bundled-python-sdk-181015f7ab06-4df51de95216-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.25659.43" />
       </set>
     </attachedChunks>
   </component>
@@ -131,12 +129,34 @@
       <workItem from="1743796358687" duration="989000" />
       <workItem from="1743873486153" duration="1873000" />
       <workItem from="1743875383776" duration="2637000" />
-      <workItem from="1743885780650" duration="2622000" />
-      <workItem from="1743893701777" duration="4022000" />
+      <workItem from="1743885780650" duration="3867000" />
+      <workItem from="1743980179884" duration="722000" />
     </task>
+    <task id="LOCAL-00001" summary="create tax calculator page, added to gitignore, added some python anywhere code">
+      <option name="closed" value="true" />
+      <created>1743893487407</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743893487407</updated>
+    </task>
+    <task id="LOCAL-00002" summary="created requirements.txt">
+      <option name="closed" value="true" />
+      <created>1743893570188</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743893570188</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="create tax calculator page, added to gitignore, added some python anywhere code" />
+    <MESSAGE value="created requirements.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="created requirements.txt" />
   </component>
 </project>

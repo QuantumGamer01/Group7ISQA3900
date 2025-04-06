@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.views.static import serve
 from django.conf import settings
-from Group7Project import (views)
+from Group7Budgeting import (views)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
