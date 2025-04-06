@@ -4,7 +4,7 @@
     <title>Tax Calculator</title>
 </head>
 <body>
-    <h1>Simple Tax Calculator</h1>
+    <h1>Tax Calculator</h1>
     <form method="post">
         {% csrf_token %}
         <label for="income">Income:</label>
@@ -17,7 +17,7 @@
     </form>
 
     {% if result is not None %}
-        <h2>Tax Amount: {{ result }}</h2>
+        <h2>Tax Amount: ${{ result }}</h2>
     {% endif %}
 </body>
 </html>
