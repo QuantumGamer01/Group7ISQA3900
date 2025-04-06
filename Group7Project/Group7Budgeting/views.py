@@ -20,4 +20,7 @@ def advanced_budget_view(request):
     sections = ['Needs', 'Wants', 'Savings']
     return render(request, 'advanced_budget.html', {'sections': sections})
 
+def homepage(request):
+    return render(request, 'homepage.html')
+
 
