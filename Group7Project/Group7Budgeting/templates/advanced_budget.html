@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Budget</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        .controls button {
+            margin-right: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        .category-select {
+            padding: 6px;
+        }
+    </style>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 40px;">
+
+    <h1 style="text-align:center;">BUDGET PAGE FOR PAID USER</h1>
+    <h1 style="text-align:center;">Your After Tax Monthly Income Is: $1234</h1>
+
+    {% for section in sections %}
+
+        <h2>{{ section }}</h2>
+        <div class="controls">
+            <button>Add Item</button>
+            <button>Delete</button>
+            <button>Update</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Assigned</th>
+                    <th>Activity</th>
+                    <th>Available</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select class="category-select">
+                            <option selected disabled>Category</option>
+                            <option>Rent</option>
+                            <option>Groceries</option>
+                            <option>Utilities</option>
+                            <option>Streaming</option>
+                            <option>Dining</option>
+                            <option>Emergency Fund</option>
+                            <option>Investments</option>
+                        </select>
+                    </td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                    <td>$0.00</td>
+                </tr>
+            </tbody>
+        </table>
+    {% endfor %}
+
+</body>
+</html>

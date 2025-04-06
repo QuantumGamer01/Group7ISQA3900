@@ -27,4 +27,7 @@ settings.MEDIA_ROOT}), #serve media files when deployed
 re_path(r'^static/(?P<path>.*)$', serve, {'document_root':
 settings.STATIC_ROOT}), #serve static files when deployed
 path('tax-calculator/', views.tax_calculator, name='tax_calculator'),
+path('simple-budget/', views.simple_budget_view, name='simple_budget'),
+path('advanced-budget/', views.advanced_budget_view, name='advanced_budget'),
+
 ]

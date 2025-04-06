@@ -13,3 +13,11 @@ def tax_calculator(request):
 
     return render(request, 'Group7Budgeting/tax_calculator.html', {'result': result})
 
+def simple_budget_view(request):
+    return render(request, 'simple_budget.html')
+
+def advanced_budget_view(request):
+    sections = ['Needs', 'Wants', 'Savings']
+    return render(request, 'advanced_budget.html', {'sections': sections})
+
+
