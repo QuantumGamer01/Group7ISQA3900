@@ -25,3 +25,4 @@ team
 !**/migrations/__init__.py
 
 venv/
+.idea/workspace.xml
