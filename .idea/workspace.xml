@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6beea074-5b66-4b10-bfa2-49c7885277f1" name="Changes" comment="small text changes on tax calc html">
-      <change beforePath="$PROJECT_DIR$/.idea/Group7ISQA3900.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Group7ISQA3900.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7Project/Group7Budgeting/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Budgeting/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7Project/Group7Budgeting/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Budgeting/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7Project/Group7Budgeting/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Budgeting/templates/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7Project/Group7Project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Project/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7Project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/db.sqlite3" afterDir="false" />
-    </list>
+    <list default="true" id="6beea074-5b66-4b10-bfa2-49c7885277f1" name="Changes" comment="small text changes on tax calc html" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
