@@ -21,6 +21,6 @@ def advanced_budget_view(request):
     return render(request, 'advanced_budget.html', {'sections': sections})
 
 def homepage(request):
-    return render(request, 'homepage.html')
+    return render(request, 'homepage.html', )
 
 
