@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6beea074-5b66-4b10-bfa2-49c7885277f1" name="Changes" comment="small text changes on tax calc html" />
+    <list default="true" id="6beea074-5b66-4b10-bfa2-49c7885277f1" name="Changes" comment="small text changes on tax calc html">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Group7Project/Group7Budgeting/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Budgeting/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Group7Project/Group7Budgeting/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Budgeting/templates/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Group7Project/Group7Project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Group7Project/Group7Project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/Group7Project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Group7Project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Group7Project/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,6 +64,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.pycharm.django.structure.promotion.success.per.project.success&quot;: &quot;true&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -133,6 +143,11 @@
       <workItem from="1743983307418" duration="581000" />
       <workItem from="1743983913039" duration="1809000" />
       <workItem from="1743985793799" duration="1071000" />
+      <workItem from="1743990993600" duration="414000" />
+      <workItem from="1745038427028" duration="384000" />
+      <workItem from="1745369887189" duration="2588000" />
+      <workItem from="1745439458494" duration="309000" />
+      <workItem from="1745440913347" duration="1298000" />
     </task>
     <task id="LOCAL-00001" summary="create tax calculator page, added to gitignore, added some python anywhere code">
       <option name="closed" value="true" />

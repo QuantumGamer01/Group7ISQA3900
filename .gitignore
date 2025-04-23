@@ -26,3 +26,8 @@ team
 
 venv/
 .idea/workspace.xml
+Group7Project/Group7Project/__pycache__/__init__.cpython-310.pyc
+Group7Project/Group7Project/__pycache__/settings.cpython-310.pyc
+Group7Project/Group7Project/__pycache__/urls.cpython-310.pyc
+Group7Project/Group7Project/__pycache__/wsgi.cpython-310.pyc
+.idea/workspace.xml
