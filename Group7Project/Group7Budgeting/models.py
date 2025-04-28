@@ -22,17 +22,30 @@ class IncomeCategory(models.Model):
     Inccategory_created = models.DateTimeField(auto_now_add=True)
     Inccategory_updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.Inccategory_name
+
 class ExpenseCategory(models.Model):
     Expcategory_id = models.AutoField(primary_key=True)
     Expcategory_name = models.CharField(max_length=100)
     Expcategory_created = models.DateTimeField(auto_now_add=True)
     Expcategory_updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.Expcategory_name
+
 class AdvancedBudget(models.Model):
     Advanced_budget_id = models.AutoField(primary_key=True)
     Advanced_budget_name = models.CharField(max_length=100)
+    income_category = models.ForeignKey(IncomeCategory, on_delete=models.SET_NULL, null=True)
+    expense_category = models.ForeignKey(ExpenseCategory, on_delete=models.SET_NULL, null=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
     Advanced_budget_created = models.DateTimeField(auto_now_add=True)
     Advanced_budget_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.Advanced_budget_name
+
 
 class PremIncome(models.Model):
     PremIncome_id = models.AutoField(primary_key=True)
@@ -50,3 +63,12 @@ class PremExpense(models.Model):
     PremExpense_created = models.DateTimeField(auto_now_add=True)
     PremExpense_updated = models.DateTimeField(auto_now=True)
 
+class IncomeEntry(models.Model):
+    category = models.ForeignKey(IncomeCategory, on_delete=models.SET_NULL, null=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class ExpenseEntry(models.Model):
+    category = models.ForeignKey(ExpenseCategory, on_delete=models.SET_NULL, null=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)

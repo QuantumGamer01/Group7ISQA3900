@@ -1,55 +1,107 @@
 {% extends 'base.html' %}
-{% load static %}
+ {% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Advanced Budget</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .summary {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 {% block content %}
-<body style="font-family: Arial, sans-serif; padding: ;">
+ <body style="font-family: Arial, sans-serif; padding: ;">
+<body>
 
-    <h1 style="text-align:center;">BUDGET PAGE FOR PAID USER</h1>
-    <h1 style="text-align:center;">Your After Tax Monthly Income Is: $1234</h1>
+<h1>Advanced Budget Page</h1>
 
-    {% for section in sections %}
+<div class="summary">
+    <h2>Summary</h2>
+    <p><strong>Total Income:</strong> ${{ total_income }}</p>
+    <p><strong>Total Expenses:</strong> ${{ total_expense }}</p>
+    <p><strong>Remaining Budget:</strong> ${{ remaining }}</p>
+</div>
 
-        <h2>{{ section }}</h2>
-        <div class="controls">
-            <button>Add Item</button>
-            <button>Delete</button>
-            <button>Update</button>
-        </div>
+<!-- Add Income -->
+<h2>Add Income</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ income_form.as_p }}
+    <button type="submit" name="add_income">Add Income</button>
+</form>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Assigned</th>
-                    <th>Activity</th>
-                    <th>Available</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <select class="category-select">
-                            <option selected disabled>Category</option>
-                            <option>Rent</option>
-                            <option>Groceries</option>
-                            <option>Utilities</option>
-                            <option>Streaming</option>
-                            <option>Dining</option>
-                            <option>Emergency Fund</option>
-                            <option>Investments</option>
-                        </select>
-                    </td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                </tr>
-            </tbody>
-        </table>
+<!-- Add Expense -->
+<h2>Add Expense</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ expense_form.as_p }}
+    <button type="submit" name="add_expense">Add Expense</button>
+</form>
+
+<!-- List Incomes -->
+<h2>Income Entries</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for income in incomes %}
+        <tr>
+            <td>{{ income.category.Inccategory_name }}</td>
+            <td>${{ income.amount }}</td>
+            <td>
+                <form method="POST" action="{% url 'delete_income' income.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background-color: red; color: white;">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">No incomes yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- List Expenses -->
+<h2>Expense Entries</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense.category.Expcategory_name }}</td>
+            <td>${{ expense.amount }}</td>
+            <td>
+                <form method="POST" action="{% url 'delete_expense' expense.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background-color: red; color: white;">Delete</button>
+                </form>
+            </td>
+        </tr>
     {% endfor %}
+
+    </tbody>
+</table>
 
 </body>
 </html>
