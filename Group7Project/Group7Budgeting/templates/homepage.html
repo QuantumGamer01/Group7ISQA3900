@@ -1,45 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <style>
-        .main-content {
-    margin-top: 50px;
-    text-align: center;
-}
-
-        .icon {
-    font-size: 96px;
-    color: #7ed957;
-    margin-bottom: 20px;
-}
-
-        h1 {
-    font-size: 36px;
-    color: black;
-}
-
-        p {
-    font-size: 18px;
-    color: black;
-}
-
-        a {
-    color: #5ce1e6;
-    text-decoration: none;
-    font-weight: bold;
-}
-    </style>
 </head>
 <body>
     {% block content %}
     <div class="main-content">
-        <div class="icon">$</div>
-        <h1>Welcome to the Finance Tracker</h1>
-        <p>Please click this <a href="/login">link</a> to login.</p>
+        <h1 class="head">Welcome to the Finance Tracker</h1>
+        <p>Please click this <a href{% url 'simple_budget' %}>link</a> to login.</p>
         <p>or</p>
         <p>Continue as a guest by clicking this <a href={% url 'simple_budget' %}>link</a>.</p>
     </div>

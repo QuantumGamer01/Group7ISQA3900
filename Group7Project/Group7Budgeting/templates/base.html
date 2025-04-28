@@ -5,37 +5,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Website{% endblock %}</title>
-        <style>
-        body {
-            background-color: white; /* Light green background */
-            font-family: Arial, sans-serif;
+    <style>
+         .main-content {
+            margin-top: 425px;
+            text-align: center;
         }
-        .navbar {
+
+         .head{
+            font-size: 48px;
+            color: black;
+             font-family: Calibri, serif;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 30px;
+            color: black;
+            font-family: Calibri, serif;
+            font-weight: bold;
+        }
+
+        a {
+            color: #5ce1e6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        body{
+            margin: 0;
+        }
+        *{
+            text-decoration: none;
+        }
+        .navbar{
+            background: #7ed957;
+            font-family: Calibri, serif;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .navdiv{
             display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            background-color: #ccff99;
+            align-items: center;
+            justify-content: space-between;
         }
-        .navbar button {
+        .logo{
+            font-size: 35px;
+            font-weight: 600;
+            color: black;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        li{
+            list-style: none;
+            display: inline-block;
+        }
+        .navbut{
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 30px;
+            cursor: pointer;
+        }
+
+                table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        .controls button {
+            margin-right: 10px;
             background-color: black;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 6px 12px;
             cursor: pointer;
-            font-size: 16px;
+            border-radius: 6px;
         }
-        .navbar button:hover {
-            background-color: #333; /* Darker shade on hover */
+        .category-select {
+            padding: 6px;
         }
+        .budgeth{
+            text-align: center;
+            font-family: Calibri, serif;
+            font-weight: bold;
+            font-size: 45px;
+        }
+
+        .budgets{
+           text-align: center;
+            font-family: Calibri, serif;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        .calc{
+            text-align: center;
+            font-size: 34px;
+            font-family: Calibri, serif;
+            margin-top: 425px;
+        }
+
+
+
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <button onclick="location.href='{% url 'simple_budget' %}'">Income</button>
-        <button onclick="location.href='{% url 'advanced_budget' %}'">Budget</button>
-        <button onclick="location.href='{% url 'tax_calculator' %}'">Savings</button>
-    </div>
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo" onclick ="location.href='{% url 'homepage' %}'">$ TheFinanceTracker</div>
+            <ul>
+                <li class="navbut" onclick ="location.href='{% url 'simple_budget' %}'">Income</li>
+                <li class="navbut" onclick ="location.href='{% url 'advanced_budget' %}'">Budget</li>
+                <li class="navbut" onclick ="location.href='{% url 'tax_calculator' %}'">Savings</li>
+                <li class="navbut" onclick ="location.href='{% url 'homepage' %}">Login</li>
+            </ul>
+    </nav>
     <div class="content">
         {% block content %}
         {% endblock %}

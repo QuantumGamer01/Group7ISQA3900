@@ -1,33 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Advanced Budget</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 40px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ccc;
-        }
-        .controls button {
-            margin-right: 10px;
-            background-color: black;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-        .category-select {
-            padding: 6px;
-        }
-    </style>
 </head>
-<body style="font-family: Arial, sans-serif; padding: 40px;">
+{% block content %}
+<body style="font-family: Arial, sans-serif; padding: ;">
 
     <h1 style="text-align:center;">BUDGET PAGE FOR PAID USER</h1>
     <h1 style="text-align:center;">Your After Tax Monthly Income Is: $1234</h1>
@@ -74,3 +53,4 @@
 
 </body>
 </html>
+{% endblock %}

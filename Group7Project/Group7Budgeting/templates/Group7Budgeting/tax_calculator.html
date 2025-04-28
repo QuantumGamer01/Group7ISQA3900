@@ -1,9 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Tax Calculator</title>
 </head>
+{% block content %}
 <body>
+<div class="calc">
     <h1>Tax Calculator</h1>
     <form method="post">
         {% csrf_token %}
@@ -19,5 +23,7 @@
     {% if result is not None %}
         <h2>Tax Amount: ${{ result }}</h2>
     {% endif %}
+</div>
 </body>
 </html>
+{% endblock %}

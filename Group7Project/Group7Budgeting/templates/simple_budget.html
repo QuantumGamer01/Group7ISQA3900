@@ -1,12 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Simple Budget</title>
 </head>
-<body style="font-family: Arial, sans-serif; text-align: center; padding: 40px;">
+{% block content %}
 
-    <h1>BUDGET PAGE FOR FREE USER</h1>
-    <h2>Your After Tax Monthly Income Is: $1234</h2>
+    <h1 class="budgeth">BUDGET PAGE FOR FREE USER</h1>
+    <h2 class="budgets">Your After Tax Monthly Income Is: $1234</h2>
 
     <div style="display: flex; justify-content: center; gap: 60px; margin-top: 40px;">
 
@@ -49,5 +51,5 @@
     </div>
 
 </body>
-
 </html>
+{% endblock %}
