@@ -19,6 +19,7 @@ from django.urls import path, re_path, include
 from django.views.static import serve
 from django.conf import settings
 from Group7Budgeting import views
+from django.conf.urls.static import static
 
 #from Group7Project.register.views import register
 
@@ -35,5 +36,6 @@ urlpatterns = [
     path('advanced-budget/', views.advanced_budget_view, name='advanced_budget'),
     path('delete-income/<int:income_id>/', views.delete_income, name='delete_income'),
     path('delete-expense/<int:expense_id>/', views.delete_expense, name='delete_expense'),
-    path('homepage.html', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('register.urls')),
 ]

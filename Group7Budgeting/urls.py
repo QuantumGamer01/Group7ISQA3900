@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.urls import include
 
@@ -10,5 +10,5 @@ urlpatterns = [
     path('advanced-budget/', views.advanced_budget_view, name='advanced_budget'),
     path('delete-income/<int:income_id>/', views.delete_income, name='delete_income'),
     path('delete-expense/<int:expense_id>/', views.delete_expense, name='delete_expense'),
-    #path('', include('register.urls')),
+    path('', include('register.urls')),
 ]
