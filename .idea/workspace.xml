@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81c392e4-81ce-4d76-ab2c-47a98f3c5be1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/register/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/register/templates/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/register/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Group7ISQA3900.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Group7ISQA3900.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Group7Budgeting/templates/advanced_budget.html" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Budgeting/templates/advanced_budget.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Group7Budgeting/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Budgeting/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7Budgeting/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Budgeting/templates/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7Budgeting/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Budgeting/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7Project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group7Project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Group7Budgeting/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Group7Budgeting/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +33,9 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2x0hvmuD3DZcOprYIwl8BHKZc9C" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,7 +48,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "luke3",
     "last_opened_file_path": "C:/Users/keena/PycharmProjects/assign-2-local-library-part-2-KRDimmock",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -87,8 +87,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PY-243.26053.29" />
-        <option value="bundled-python-sdk-b1dbf8ef85a6-4df51de95216-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.26053.29" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-PY-243.23654.177" />
+        <option value="bundled-python-sdk-91d3a02ef49d-43b77aa2d136-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.23654.177" />
       </set>
     </attachedChunks>
   </component>

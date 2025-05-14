@@ -38,8 +38,7 @@ def advanced_budget_view(request):
         income_form = IncomeEntryForm()
         expense_form = ExpenseEntryForm()
 
-
-    expenses = []
+    expenses = ExpenseEntry.objects.all()
 
     incomes = IncomeEntry.objects.all()
     total_income = sum([income.amount for income in incomes])

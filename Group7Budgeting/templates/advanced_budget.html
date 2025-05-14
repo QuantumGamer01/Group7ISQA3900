@@ -1,108 +1,211 @@
 {% extends 'base.html' %}
- {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Advanced Budget</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
-        }
-        .summary {
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
+{% load static %}
+
+{% block style %}
+<style>
+    button {
+        all: unset;
+        cursor: pointer;
+        font-size: 18px;
+        font-family: Calibri, serif;
+        font-weight: bold;
+        color: black;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 30px;
+        font-family: Arial, sans-serif;
+    }
+
+    .summary-bar {
+        background-color: #ffffff;
+        padding: 12px 20px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.05);
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+    }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 40px;
+        flex-wrap: nowrap;
+    }
+
+    .form-container {
+        background: #ffffff;
+        padding: 20px;
+        width: 48%;
+        min-width: 300px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+    }
+
+    .tables-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        flex-wrap: nowrap;
+    }
+
+    .table-container {
+        width: 48%;
+        background: #ffffff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .delete-button {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 0;
+        font-family: Arial, sans-serif;
+    }
+    button[type="submit"] {
+        background-color: #7ed957;
+        color: black;
+        border: none;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #6ac149;
+    }
+
+</style>
+{% endblock %}
+
 {% block content %}
- <body style="font-family: Arial, sans-serif; padding: ;">
-<body>
+<div class="container">
+    <h1>Advanced Budget Page</h1>
 
-<h1>Advanced Budget Page</h1>
+    <div class="summary-bar">
+        <span><strong>Total Income:</strong> ${{ total_income }}</span>
+        <span><strong>Total Expenses:</strong> ${{ total_expense }}</span>
+        <span><strong>Remaining:</strong> ${{ remaining }}</span>
+    </div>
 
-<div class="summary">
-    <h2>Summary</h2>
-    <p><strong>Total Income:</strong> ${{ total_income }}</p>
-    <p><strong>Total Expenses:</strong> ${{ total_expense }}</p>
-    <p><strong>Remaining Budget:</strong> ${{ remaining }}</p>
+    <div class="form-row">
+        <!-- Add Income -->
+        <div class="form-container">
+            <h3>Add Income</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ income_form.as_p }}
+                <button type="submit" name="add_income">Add Income</button>
+            </form>
+        </div>
+
+        <!-- Add Expense -->
+        <div class="form-container">
+            <h3>Add Expense</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ expense_form.as_p }}
+                <button type="submit" name="add_expense">Add Expense</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="tables-row">
+        <!-- Income Table -->
+        <div class="table-container">
+            <h3>Income Entries</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for income in incomes %}
+                    <tr>
+                        <td>{{ income.category.Inccategory_name }}</td>
+                        <td>${{ income.amount }}</td>
+                        <td>
+                            <form method="POST" action="{% url 'delete_income' income.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="3">No incomes yet.</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Expense Table -->
+        <div class="table-container">
+            <h3>Expense Entries</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for expense in expenses %}
+                    <tr>
+                        <td>{{ expense.category.Expcategory_name }}</td>
+                        <td>${{ expense.amount }}</td>
+                        <td>
+                            <form method="POST" action="{% url 'delete_expense' expense.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="3">No expenses yet.</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-
-<!-- Add Income -->
-<h2>Add Income</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ income_form.as_p }}
-    <button type="submit" name="add_income">Add Income</button>
-</form>
-
-<!-- Add Expense -->
-<h2>Add Expense</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ expense_form.as_p }}
-    <button type="submit" name="add_expense">Add Expense</button>
-</form>
-
-<!-- List Incomes -->
-<h2>Income Entries</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for income in incomes %}
-        <tr>
-            <td>{{ income.category.Inccategory_name }}</td>
-            <td>${{ income.amount }}</td>
-            <td>
-                <form method="POST" action="{% url 'delete_income' income.id %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" style="background-color: red; color: white;">Delete</button>
-                </form>
-            </td>
-        </tr>
-        {% empty %}
-        <tr><td colspan="3">No incomes yet.</td></tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<!-- List Expenses -->
-<h2>Expense Entries</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for expense in expenses %}
-        <tr>
-            <td>{{ expense.category.Expcategory_name }}</td>
-            <td>${{ expense.amount }}</td>
-            <td>
-                <form method="POST" action="{% url 'delete_expense' expense.id %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" style="background-color: red; color: white;">Delete</button>
-                </form>
-            </td>
-        </tr>
-    {% endfor %}
-
-    </tbody>
-</table>
-
-</body>
-</html>
 {% endblock %}
