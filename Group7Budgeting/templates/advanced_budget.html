@@ -115,8 +115,9 @@
 {% endblock %}
 
 {% block content %}
+{% block content %}
 <div class="container">
-    <h1>Advanced Budget Page</h1>
+    <h1>{{ user.username }}'s Advanced Budget Page</h1> <!-- Personalized to user -->
 
     <div class="summary-bar">
         <span><strong>Total Income:</strong> ${{ total_income }}</span>
@@ -152,27 +153,25 @@
             <h3>Income Entries</h3>
             <table>
                 <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Amount</th>
-                        <th>Action</th>
-                    </tr>
+                    <tr><th>Category</th><th>Amount</th><th>Action</th></tr>
                 </thead>
                 <tbody>
-                {% for income in incomes %}
-                    <tr>
-                        <td>{{ income.category.Inccategory_name }}</td>
-                        <td>${{ income.amount }}</td>
-                        <td>
-                            <form method="POST" action="{% url 'delete_income' income.id %}">
-                                {% csrf_token %}
-                                <button type="submit" class="delete-button">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                {% empty %}
-                    <tr><td colspan="3">No incomes yet.</td></tr>
-                {% endfor %}
+                    {% if incomes %}
+                        {% for income in incomes %}
+                            <tr>
+                                <td>{{ income.category.Inccategory_name }}</td>
+                                <td>${{ income.amount }}</td>
+                                <td>
+                                    <form method="POST" action="{% url 'delete_income' income.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="delete-button">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr><td colspan="3">No income entries available.</td></tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>
@@ -182,27 +181,25 @@
             <h3>Expense Entries</h3>
             <table>
                 <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Amount</th>
-                        <th>Action</th>
-                    </tr>
+                    <tr><th>Category</th><th>Amount</th><th>Action</th></tr>
                 </thead>
                 <tbody>
-                {% for expense in expenses %}
-                    <tr>
-                        <td>{{ expense.category.Expcategory_name }}</td>
-                        <td>${{ expense.amount }}</td>
-                        <td>
-                            <form method="POST" action="{% url 'delete_expense' expense.id %}">
-                                {% csrf_token %}
-                                <button type="submit" class="delete-button">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                {% empty %}
-                    <tr><td colspan="3">No expenses yet.</td></tr>
-                {% endfor %}
+                    {% if expenses %}
+                        {% for expense in expenses %}
+                            <tr>
+                                <td>{{ expense.category.Expcategory_name }}</td>
+                                <td>${{ expense.amount }}</td>
+                                <td>
+                                    <form method="POST" action="{% url 'delete_expense' expense.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="delete-button">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr><td colspan="3">No expense entries available.</td></tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>

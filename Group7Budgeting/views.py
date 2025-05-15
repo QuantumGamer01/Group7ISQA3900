@@ -1,7 +1,10 @@
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ExpenseEntryForm, IncomeEntryForm
-from .models import IncomeCategory, ExpenseCategory, IncomeEntry, ExpenseEntry, AdvancedBudget
+from .models import IncomeCategory, ExpenseCategory, IncomeEntry, ExpenseEntry, AdvancedBudget, PremExpense, PremIncome
 
 
 # Create your views here.
@@ -59,30 +62,47 @@ def advanced_budget_view(request):
 
 def homepage(request):
     return render(request, 'homepage.html', )
-
+@login_required
 def advanced_budget(request):
+    # Fetch user-specific data
+    incomes = IncomeEntry.objects.filter(user=request.user)
+    expenses = ExpenseEntry.objects.filter(user=request.user)
+
+    total_income = sum(income.amount for income in incomes)
+    total_expense = sum(expense.amount for expense in expenses)
+    remaining = total_income - total_expense
+
     if request.method == 'POST':
-        category = request.POST['category']
-        assigned = request.POST['assigned']
-        activity = request.POST['activity']
-        available = request.POST['available']
-
-        new_budget = AdvancedBudget(
-            Advanced_budget_name=category,
-            income_category=category,
-            expense_category=None,
-            amount=assigned,
-        )
-        new_budget.save()
-
-        return redirect('advanced_budget')
-
+        if 'add_income' in request.POST:  # Handle the income form submission
+            income_form = IncomeEntryForm(request.POST)
+            if income_form.is_valid():
+                income_entry = income_form.save(commit=False)  # Don't save to the database yet
+                income_entry.user = request.user  # Assign the currently logged-in user
+                income_entry.save()  # Now save to the database
+                return redirect('advanced_budget')  # Reload the page after submission
+        elif 'add_expense' in request.POST:  # Handle the expense form submission
+            expense_form = ExpenseEntryForm(request.POST)
+            if expense_form.is_valid():
+                expense_entry = expense_form.save(commit=False)  # Don't save to the database yet
+                expense_entry.user = request.user  # Assign the currently logged-in user
+                expense_entry.save()  # Now save to the database
+                return redirect('advanced_budget')  # Reload the page after submission
     else:
-        form = AdvancedBudgetForm()
+        income_form = IncomeEntryForm()  # Empty form for adding income
+        expense_form = ExpenseEntryForm()  # Empty form for adding expenses
 
-    budgets = AdvancedBudget.objects.all()
+    context = {
+        'incomes': incomes,
+        'expenses': expenses,
+        'total_income': total_income,
+        'total_expense': total_expense,
+        'remaining': remaining,
+        'income_form': income_form,
+        'expense_form': expense_form,
+    }
+    return render(request, 'advanced_budget.html', context)
 
-    return render(request, 'advanced_budget.html', {'form': form, 'budgets': budgets})
+
 
 def populate_default_categories():
     default_income = ['Salary', 'Investments', 'Other Income']
@@ -100,48 +120,36 @@ def delete_budget(request, budget_id):
     return redirect('advanced_budget')
 
 def delete_income(request, income_id):
-    income = get_object_or_404(IncomeEntry, id=income_id)
+    income = get_object_or_404(IncomeEntry, id=income_id, user=request.user)  # Check ownership
+    if income.user != request.user:
+        return HttpResponseForbidden("You are not authorized to delete this income.")
     income.delete()
     return redirect('advanced_budget')
 
+
 def delete_expense(request, expense_id):
-    expense = get_object_or_404(ExpenseEntry, id=expense_id)
+    expense = get_object_or_404(ExpenseEntry, id=expense_id, user=request.user)
+    if expense.user != request.user:
+        return HttpResponseForbidden("You are not authorized to delete this expense")
     expense.delete()
     return redirect('advanced_budget')
 
-from django.shortcuts import render
+class AdvancedBudgetByUserListView(LoginRequiredMixin, ListView):
+    model = AdvancedBudget
+    template_name = "advanced_budget.html"
+    paginate_by = 10
 
-def simple_budget(request):
-    result = None
-    expenses = []
-    income_list = []
+    def get_queryset(self):
+        return IncomeEntry.objects.filter(user=self.request.user)
 
-    if request.method == "POST":
-        income_list = request.POST.getlist("income")
-        expense_names = request.POST.getlist("expense_name")
-        expense_amounts = request.POST.getlist("expense_amount")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        incomes = PremIncome.objects.filter(user=self.request.user)
+        expenses = PremExpense.objects.filter(user=self.request.user)
 
-        try:
-            incomes = [float(i) for i in income_list if i.strip()]
-            total_income = sum(incomes)
-        except:
-            total_income = 0
-
-        try:
-            expenses = [
-                {"name": n, "amount": float(a)}
-                for n, a in zip(expense_names, expense_amounts)
-                if n.strip() and a.strip()
-            ]
-            total_expense = sum(e["amount"] for e in expenses)
-        except:
-            total_expense = 0
-
-        result = total_income - total_expense
-
-    return render(request, "simple_budget.html", {
-        "result": result,
-        "expenses": expenses,
-        "income_list": income_list,
-    })
-
+        context["total_income"] = incomes.aggregate(Sum("amount"))["amount__sum"] or 0
+        context["total_expense"] = expenses.aggregate(Sum("amount"))["amount__sum"] or 0
+        context["remaining"] = context["total_income"] - context["total_expense"]
+        context["incomes"] = incomes
+        context["expenses"] = expenses
+        return context

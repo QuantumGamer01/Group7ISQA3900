@@ -1,12 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 # Create your models here.
-class Users(models.Model):
-    user_id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    user_type = models.CharField(max_length=100)
-    userscreated_at = models.DateTimeField(auto_now_add=True)
-    usersupdated_at = models.DateTimeField(auto_now=True)
+
+# class Users(models.Model):
+#     user_id = models.AutoField(primary_key=True)
+#     username = models.CharField(max_length=100)
+#     password = models.CharField(max_length=100)
+#     user_type = models.CharField(max_length=100)
+#     userscreated_at = models.DateTimeField(auto_now_add=True)
+#     usersupdated_at = models.DateTimeField(auto_now=True)
+
+
 
 
 class BasicUsers(models.Model):
@@ -35,6 +39,7 @@ class ExpenseCategory(models.Model):
         return self.Expcategory_name
 
 class AdvancedBudget(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     Advanced_budget_id = models.AutoField(primary_key=True)
     Advanced_budget_name = models.CharField(max_length=100)
     income_category = models.ForeignKey(IncomeCategory, on_delete=models.SET_NULL, null=True)
@@ -48,6 +53,7 @@ class AdvancedBudget(models.Model):
 
 
 class PremIncome(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     PremIncome_id = models.AutoField(primary_key=True)
     PremIncome_amount = models.DecimalField(max_digits=10, decimal_places=2)
     PremIncome_type = models.CharField(max_length=100)
@@ -56,6 +62,7 @@ class PremIncome(models.Model):
     PremIncome_updated = models.DateTimeField(auto_now=True)
 
 class PremExpense(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     PremExpense_id = models.AutoField(primary_key=True)
     PremExpense_amount = models.DecimalField(max_digits=10, decimal_places=2)
     PremExpense_type = models.CharField(max_length=100)
@@ -64,11 +71,13 @@ class PremExpense(models.Model):
     PremExpense_updated = models.DateTimeField(auto_now=True)
 
 class IncomeEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     category = models.ForeignKey(IncomeCategory, on_delete=models.SET_NULL, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class ExpenseEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     category = models.ForeignKey(ExpenseCategory, on_delete=models.SET_NULL, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
