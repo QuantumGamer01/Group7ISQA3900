@@ -23,41 +23,6 @@ def tax_calculator(request):
 def simple_budget_view(request):
     return render(request, 'simple_budget.html')
 
-def advanced_budget_view(request):
-    populate_default_categories()
-
-    if request.method == 'POST':
-        if 'add_income' in request.POST:
-            income_form = IncomeEntryForm(request.POST)
-            if income_form.is_valid():
-                income_form.save()
-                return redirect('advanced_budget')
-        elif 'add_expense' in request.POST:
-            expense_form = ExpenseEntryForm(request.POST)
-            if expense_form.is_valid():
-                expense_form.save()
-                return redirect('advanced_budget')
-    else:
-        income_form = IncomeEntryForm()
-        expense_form = ExpenseEntryForm()
-
-    expenses = ExpenseEntry.objects.all()
-
-    incomes = IncomeEntry.objects.all()
-    total_income = sum([income.amount for income in incomes])
-    total_expense = sum([expense.amount for expense in expenses])
-    remaining = total_income - total_expense
-
-    return render(request, 'advanced_budget.html', {
-        'income_form': income_form,
-        'expense_form': expense_form,
-        'incomes': incomes,
-        'expenses': expenses,
-        'total_income': total_income,
-        'total_expense': total_expense,
-        'remaining': remaining
-    })
-
 
 
 def homepage(request):
