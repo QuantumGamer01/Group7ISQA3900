@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ExpenseEntryForm, IncomeEntryForm
-from .models import IncomeCategory, ExpenseCategory, IncomeEntry, ExpenseEntry, AdvancedBudget
+from .models import IncomeCategory, ExpenseCategory, IncomeEntry, ExpenseEntry, AdvancedBudget, PremExpense, PremIncome
 
 
 # Create your views here.
@@ -109,3 +110,22 @@ def delete_expense(request, expense_id):
     expense.delete()
     return redirect('advanced_budget')
 
+class AdvancedBudgetByUserListView(LoginRequiredMixin, ListView):
+    model = AdvancedBudget
+    template_name = "advanced_budget.html"
+    paginate_by = 10
+
+    def get_queryset(self):
+        return AdvancedBudget.objects.filter(user=self.request.user)  # Only show logged-in user's records
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        incomes = PremIncome.objects.filter(user=self.request.user)
+        expenses = PremExpense.objects.filter(user=self.request.user)
+
+        context["total_income"] = incomes.aggregate(Sum("amount"))["amount__sum"] or 0
+        context["total_expense"] = expenses.aggregate(Sum("amount"))["amount__sum"] or 0
+        context["remaining"] = context["total_income"] - context["total_expense"]
+        context["incomes"] = incomes
+        context["expenses"] = expenses
+        return context
