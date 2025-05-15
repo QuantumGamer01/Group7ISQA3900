@@ -119,8 +119,8 @@
         <div class="navdiv">
             <div class="logo" onclick ="location.href='{% url 'homepage' %}'">$ TheFinanceTracker</div>
             <ul>
-                <li class="navbut" onclick ="location.href='{% url 'simple_budget' %}'">Income</li>
-                <li class="navbut" onclick ="location.href='{% url 'advanced_budget' %}'">Budget</li>
+                <li class="navbut" onclick ="location.href='{% url 'simple_budget' %}'">Free User Budget Calculator</li>
+                <li class="navbut" onclick ="location.href='{% url 'advanced_budget' %}'">Advanced Budget Page</li>
                 <li class="navbut" onclick ="location.href='{% url 'tax_calculator' %}'">Tax Calculator</li>
                {% if user.is_authenticated %}
                     <li>

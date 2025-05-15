@@ -5,51 +5,198 @@
 <head>
     <title>Simple Budget</title>
 </head>
+
+{% block style %}
+<style>
+    button {
+        all: unset;
+        cursor: pointer;
+        font-size: 18px;
+        font-family: Calibri, serif;
+        font-weight: bold;
+        color: black;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 30px;
+        font-family: Arial, sans-serif;
+    }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 40px;
+        flex-wrap: nowrap;
+    }
+
+    .form-container {
+        background: #ffffff;
+        padding: 20px;
+        width: 48%;
+        min-width: 300px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+    }
+
+    h3 {
+        margin-top: 0;
+    }
+
+    .form-container input {
+        padding: 8px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-container input[type="text"] {
+        width: 60%;
+    }
+
+    .form-container input[type="number"] {
+        width: 35%;
+    }
+
+    .add-btn {
+        display: inline-block;
+        background-color: #e9e9e9;
+        border-radius: 5px;
+        padding: 6px 10px;
+        margin-top: 10px;
+    }
+
+    #budget-result-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .flex-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        flex: 1;
+    }
+
+    a.tax-link {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
+<body>
+<div class="container">
+    <h1 style="text-align:center;">Simple Budget Calculator</h1>
 
-    <h1 class="budgeth">BUDGET PAGE FOR FREE USER</h1>
-    <h2 class="budgets">Your After Tax Monthly Income Is: $1234</h2>
+    <form onsubmit="event.preventDefault(); updateTotals();">
+        <div class="form-row">
+            <div class="form-container">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="margin: 0;">Income</h3>
+                    <a href="/tax-calculator" target="_blank" class="tax-link">Post Tax Income Calculator</a>
+                </div>
+                <p style="font-size: 18px; font-weight: 600;">Total: $<span id="total-income">0.00</span></p>
 
-    <div style="display: flex; justify-content: center; gap: 60px; margin-top: 40px;">
+                <div id="income-section">
+                    <div class="flex-row">
+                        <input type="text" name="income_name" placeholder="Source or Description" class="form-control">
+                        <input type="number" name="income" placeholder="Amount" step="0.01" oninput="updateTotals()" class="form-control">
+                    </div>
+                </div>
+                <span class="add-btn" onclick="addIncomeField()">+ Add Income</span>
+            </div>
 
-        <div>
-            <h3>Needs</h3>
-            <form>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$">
-            </form>
+            <div class="form-container">
+                <h3>Expenses</h3>
+                <p style="font-size: 18px; font-weight: 600;">Total: $<span id="total-expenses">0.00</span></p>
+                <div id="expense-section">
+                    <div class="flex-row">
+                        <input type="text" name="expense_name" placeholder="Name" class="form-control">
+                        <input type="number" name="expense_amount" placeholder="Amount" step="0.01" oninput="updateTotals()" class="form-control">
+                    </div>
+                </div>
+                <span class="add-btn" onclick="addExpenseField()">+ Add Expense</span>
+            </div>
         </div>
 
-        <div>
-            <h3>Wants</h3>
-            <form>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$">
-            </form>
+        <div style="text-align:center;">
+            <button type="button" class="btn btn-primary" onclick="updateTotals()">Calculated Budget</button>
         </div>
 
-        <div>
-            <h3>Savings</h3>
-            <form>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$"><br><br>
-                <input type="text" placeholder="$">
-            </form>
+        <div id="budget-result-box">
+            <h4>Results:</h4>
+            <p><strong>Total Income:</strong> $<span id="display-income">0.00</span></p>
+            <p><strong>Total Expenses:</strong> $<span id="display-expenses">0.00</span></p>
+            <p><strong>Remaining Budget:</strong> $<span id="display-remaining">0.00</span></p>
         </div>
+    </form>
+</div>
 
-    </div>
+<script>
+function addIncomeField() {
+    const section = document.getElementById("income-section");
+    const row = document.createElement("div");
+    row.className = "flex-row";
+    row.innerHTML = `
+        <input type="text" name="income_name" placeholder="Source or Description" class="form-control">
+        <input type="number" name="income" placeholder="Amount" step="0.01" oninput="updateTotals()" class="form-control">
+    `;
+    section.appendChild(row);
+}
 
+function addExpenseField() {
+    const section = document.getElementById("expense-section");
+    const row = document.createElement("div");
+    row.className = "flex-row";
+    row.innerHTML = `
+        <input type="text" name="expense_name" placeholder="Name" class="form-control">
+        <input type="number" name="expense_amount" placeholder="Amount" step="0.01" oninput="updateTotals()" class="form-control">
+    `;
+    section.appendChild(row);
+}
+
+function updateTotals() {
+    let totalIncome = 0;
+    document.querySelectorAll("input[name='income']").forEach(input => {
+        totalIncome += parseFloat(input.value) || 0;
+    });
+
+    let totalExpenses = 0;
+    document.querySelectorAll("input[name='expense_amount']").forEach(input => {
+        totalExpenses += parseFloat(input.value) || 0;
+    });
+
+    const remaining = totalIncome - totalExpenses;
+
+    document.getElementById("total-income").textContent = totalIncome.toFixed(2);
+    document.getElementById("total-expenses").textContent = totalExpenses.toFixed(2);
+
+    document.getElementById("budget-result-box").style.display = "block";
+    document.getElementById("display-income").textContent = totalIncome.toFixed(2);
+    document.getElementById("display-expenses").textContent = totalExpenses.toFixed(2);
+    document.getElementById("display-remaining").textContent = remaining.toFixed(2);
+}
+</script>
 </body>
 </html>
 {% endblock %}

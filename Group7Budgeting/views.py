@@ -109,3 +109,39 @@ def delete_expense(request, expense_id):
     expense.delete()
     return redirect('advanced_budget')
 
+from django.shortcuts import render
+
+def simple_budget(request):
+    result = None
+    expenses = []
+    income_list = []
+
+    if request.method == "POST":
+        income_list = request.POST.getlist("income")
+        expense_names = request.POST.getlist("expense_name")
+        expense_amounts = request.POST.getlist("expense_amount")
+
+        try:
+            incomes = [float(i) for i in income_list if i.strip()]
+            total_income = sum(incomes)
+        except:
+            total_income = 0
+
+        try:
+            expenses = [
+                {"name": n, "amount": float(a)}
+                for n, a in zip(expense_names, expense_amounts)
+                if n.strip() and a.strip()
+            ]
+            total_expense = sum(e["amount"] for e in expenses)
+        except:
+            total_expense = 0
+
+        result = total_income - total_expense
+
+    return render(request, "simple_budget.html", {
+        "result": result,
+        "expenses": expenses,
+        "income_list": income_list,
+    })
+
