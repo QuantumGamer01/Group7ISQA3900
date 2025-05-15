@@ -12,4 +12,5 @@ urlpatterns = [
     path('delete-income/<int:income_id>/', views.delete_income, name='delete_income'),
     path('delete-expense/<int:expense_id>/', views.delete_expense, name='delete_expense'),
     path('', include('register.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

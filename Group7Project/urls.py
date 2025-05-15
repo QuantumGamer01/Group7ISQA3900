@@ -19,7 +19,6 @@ from django.urls import path, re_path, include
 from django.views.static import serve
 from django.conf import settings
 from Group7Budgeting import views
-from django.conf.urls.static import static
 
 #from Group7Project.register.views import register
 
