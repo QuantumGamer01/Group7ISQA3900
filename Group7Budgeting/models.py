@@ -71,11 +71,13 @@ class PremExpense(models.Model):
     PremExpense_updated = models.DateTimeField(auto_now=True)
 
 class IncomeEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     category = models.ForeignKey(IncomeCategory, on_delete=models.SET_NULL, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class ExpenseEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     category = models.ForeignKey(ExpenseCategory, on_delete=models.SET_NULL, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
