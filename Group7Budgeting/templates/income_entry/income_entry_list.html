@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Income Entries</h1>
+<a href="{% url 'income_entry_create' %}">+ Add Entry</a>
+<div style="margin: 1rem 0;">
+  <a href="{% url 'all_income_entries' %}">
+    <button type="button">📄 View All Income Entries</button>
+  </a>
+</div>
+
+<ul>
+  {% for entry in income_entry_list %}
+    <li>
+      <a href="{% url 'income_entry_detail' entry.pk %}">
+        <a href="{% url 'income_entry_detail' entry.pk %}">
+            {{ entry.category }} – ${{ entry.amount }}
+        </a>
+      </a>
+      <br>
+      <small>{{ entry.user.username }} • {{ entry.created_at }}</small>
+
+      {% if user.is_superuser %}
+        [<a href="{% url 'income_entry_update' entry.pk %}">Edit</a>]
+        [<a href="{% url 'income_entry_delete' entry.pk %}">Delete</a>]
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

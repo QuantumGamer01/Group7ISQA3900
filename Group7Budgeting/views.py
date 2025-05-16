@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ExpenseEntryForm, IncomeEntryForm
 from .models import IncomeCategory, ExpenseCategory, IncomeEntry, ExpenseEntry, AdvancedBudget, PremExpense, PremIncome
@@ -117,4 +118,47 @@ class AdvancedBudgetByUserListView(LoginRequiredMixin, ListView):
         context["remaining"] = context["total_income"] - context["total_expense"]
         context["incomes"] = incomes
         context["expenses"] = expenses
+        return context
+
+class IncomeEntryListView(ListView):
+    model = IncomeEntry
+    template_name = 'income_entry/income_entry_list.html'
+    context_object_name = 'incomeentry_list'
+
+class IncomeEntryCreateView(CreateView):
+    model = IncomeEntry
+    fields = ['category', 'amount']
+    template_name = 'income_entry/income_entry_form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class IncomeEntryUpdateView(UpdateView):
+    model = IncomeEntry
+    fields = ['user', 'category', 'amount']
+    template_name = 'income_entry/income_entry_form.html'
+
+class IncomeEntryDeleteView(DeleteView):
+    model = IncomeEntry
+    success_url = reverse_lazy('income_entry_list')
+    template_name = 'income_entry/income_entry_confirm_delete.html'
+
+class IncomeEntryDetailView(DetailView):
+    model = IncomeEntry
+    template_name = 'income_entry/income_entry_detail.html'
+    context_object_name = 'income_entry'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['all_entries'] = IncomeEntry.objects.all()  # ✅ Add this
+        return context
+
+class AllIncomeEntriesView(TemplateView):
+    template_name = 'income_entry/all_income_entries.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['all_entries'] = IncomeEntry.objects.all()
         return context

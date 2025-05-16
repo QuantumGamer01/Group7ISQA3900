@@ -124,6 +124,10 @@
                 <li class="navbut" onclick ="location.href='{% url 'advanced_budget' %}'">Advanced Budget Page</li>
                 {% endif %}
                 <li class="navbut" onclick ="location.href='{% url 'tax_calculator' %}'">Tax Calculator</li>
+                {% if user.is_superuser %}
+                    <li><a href="{% url 'income_entry_list' %}">Manage Income Entries</a></li>
+                {% endif %}
+
                {% if user.is_authenticated %}
                     <li>
                         <form action="{% url 'logout' %}" method="post">

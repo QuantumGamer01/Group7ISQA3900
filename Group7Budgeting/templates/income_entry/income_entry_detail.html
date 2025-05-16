@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>{{ income_entry.category }} – ${{ income_entry.amount }}</h2>
+<p><strong>Created by:</strong> {{ income_entry.user.username }}</p>
+<p><strong>Date:</strong> {{ income_entry.created_at }}</p>
+
+{% if user.is_superuser %}
+  <p>
+    <a href="{% url 'income_entry_update' income_entry.pk %}">Edit</a> |
+    <a href="{% url 'income_entry_delete' income_entry.pk %}">Delete</a>
+  </p>
+{% endif %}
+
+<a href="{% url 'income_entry_list' %}">← Back to List</a>
+
+<hr>
+<h3>All Income Entries</h3>
+<ul>
+  {% for entry in all_entries %}
+    <li>
+      <a href="{% url 'income_entry_detail' entry.pk %}">
+        {{ entry.category }} – ${{ entry.amount }}
+      </a>
+      ({{ entry.user.username }})
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

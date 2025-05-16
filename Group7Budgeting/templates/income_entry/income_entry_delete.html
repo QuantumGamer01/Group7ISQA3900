@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Delete Entry</h2>
+{% if perms.Group7BudgetingConfig.delete_income_entry %}
+  <p>Are you sure you want to delete this income entry?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+  </form>
+{% else %}
+  <p>You do not have permission to delete this entry.</p>
+{% endif %}
+<a href="{% url 'income_entry_list' %}">Cancel</a>
+{% endblock %}
