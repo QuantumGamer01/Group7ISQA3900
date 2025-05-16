@@ -125,7 +125,7 @@
                 {% endif %}
                 <li class="navbut" onclick ="location.href='{% url 'tax_calculator' %}'">Tax Calculator</li>
                 {% if user.is_superuser %}
-                    <li><a href="{% url 'income_entry_list' %}">Manage Income Entries</a></li>
+                    <li><a href="{% url 'user_list' %}">Manage Users</a></li>
                 {% endif %}
 
                {% if user.is_authenticated %}

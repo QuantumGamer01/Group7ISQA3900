@@ -18,4 +18,5 @@ urlpatterns = [
     path('income-entry/create/', IncomeEntryCreateView.as_view(), name='income_entry_create'),
     path('income-entry/<int:pk>/update/', IncomeEntryUpdateView.as_view(), name='income_entry_update'),
     path('income-entry/<int:pk>/delete/', IncomeEntryDeleteView.as_view(), name='income_entry_delete'),
+    path('users/', views.user_list, name='user_list'),
 ]

@@ -1,11 +1,11 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ExpenseEntryForm, IncomeEntryForm
-from .models import IncomeCategory, ExpenseCategory, IncomeEntry, ExpenseEntry, AdvancedBudget, PremExpense, PremIncome
+from .models import IncomeCategory, ExpenseCategory, IncomeEntry, ExpenseEntry, AdvancedBudget, PremExpense, PremIncome, User
 
 
 # Create your views here.
@@ -162,3 +162,28 @@ class AllIncomeEntriesView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['all_entries'] = IncomeEntry.objects.all()
         return context
+
+def superuser_required(function):
+    return user_passes_test(lambda u: u.is_superuser)(function)
+
+
+@superuser_required
+def user_list(request):
+    if request.method == "POST":
+        # Handle user deletion
+        user_id = request.POST.get("delete_user")
+        user_to_delete = get_object_or_404(User, id=user_id)
+
+        # Prevent superuser from deleting themselves
+        if user_to_delete == request.user:
+            return render(request, "user_list.html", {
+                "users": User.objects.all(),
+                "error": "You cannot delete yourself!"
+            })
+
+        user_to_delete.delete()
+        return redirect("user_list")
+
+    # Render the list of users
+    users = User.objects.all()
+    return render(request, "user_list.html", {"users": users})
